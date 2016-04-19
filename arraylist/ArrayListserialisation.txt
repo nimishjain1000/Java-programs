@@ -1,0 +1,18 @@
+import java.util.ArrayList.*;
+import java.io.*;
+import java.util.Scanner;
+public class ArrayListserialization
+{
+
+public static void main()throws IOException
+{ ArrayList<String> al=new ArayList<>();
+Scanner scan= new Scanner(System.in);
+
+    //For string
+
+    String text= scan.nextLine()
+al.add(text);
+al.add(o,"bye");
+System.out.println(al);
+}
+}

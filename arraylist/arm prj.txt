@@ -1,0 +1,1 @@
+programming' languages are typically used in scenarios where the code will be around for a long time. If you want to write something quickly and then never use it again, 'scripting' languages are what you want.

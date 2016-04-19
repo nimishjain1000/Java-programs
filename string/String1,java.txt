@@ -1,0 +1,10 @@
+class String1
+{
+public static void main()
+{
+String s="      my name is nimish     ";
+System.out.println(s);
+String s1=s.trim();
+
+System.out.println(s1);
+}}

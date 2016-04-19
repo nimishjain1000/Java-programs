@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" 
+	version="2.0">
+	
+	<tag>
+		<name>template</name>
+		<tag-class>com.bea.console.taglib.html.TemplateTag</tag-class>
+		<description> <![CDATA[Identifies the XSLT template that will be used to
+                     transform the output of a JSP tag as an HTML form. All JSP tags
+					 in this library initially output XML; the template that you
+					 specify determines how the XML is transformed into HTML.]]>
+			 </description>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+			<description> <![CDATA[The path and file name for the XSLT template file.
+			The path must start from the root of the portal Web application.
+			You can create your own XSLT stylesheet or use one of the following:
+					 "/WEB-INF/templates/form.xml" to create a form that matches
+					Administration Console configuration pages (such as Domains: Configuration: General);
+					 "/WEB-INF/templates/assistant.xml" to create a form that matches Administration Console
+					 assistants;
+					"/WEB-INF/templates/tablePreferences.xml" to create a form that matches pages used
+					to customize table displays in the Administration Console.]]>
+				 </description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>form</name>
+		<tag-class>
+			com.bea.console.taglib.form.ConsoleFormTag</tag-class>
+		<body-content>JSP</body-content>
+		<description> <![CDATA[Generates a standard HTML form as specified by the <wl-extension:template>
+		tag. This tag is valid only when nested in <wl-extension:template>.]]>
+			 </description>
+		<example>
+			<pre><![CDATA[<wl-extension:form action="/CoreServerServerControlStartstopUpdated"
+               bundle="core">
+
+        <wl-extension:checkbox property="serverControlStartstop.IgnoreSessionsDuringShutdown"
+                 labelId="core.server.servercontrolstartstop.ignoresessionsduringshutdown.label"
+                 inlineHelpId="core.server.servercontrolstartstop.ignoresessionsduringshutdown.label.inlinehelp" />
+
+        <wl-extension:text property="serverControlStartstop.GracefulShutdownTimeout"
+                 labelId="core.server.servercontrolstartstop.gracefulshutdowntimeout.label"
+                 inlineHelpId="core.server.servercontrolstartstop.gracefulshutdowntimeout.label.inlinehelp" />
+
+        <wl-extension:text property="serverControlStartstop.startupTimeout"
+                 labelId="core.server.servercontrolstartstop.startuptimeout.label"
+                 inlineHelpId="core.server.servercontrolstartstop.startuptimeout.label.inlinehelp" />
+
+      </wl-extension:form>]]></pre>
+		</example>
+		<attribute>
+			<name>action</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[The path of a Struts action to invoke when a user submits
+			this form. The Struts controller assumes that this action is in the same 
+			Struts module as the action that loaded the form. For a read-only form, 
+			specify the action path of the action that loaded the form.]]>
+				 </description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[The name of a form bean that contains properties
+			for this form. By default, this value is set to the name of the ActionForm 
+			bean that was passed to the HTTPRequest from the Struts Action. Only specify this
+			attribute if you want to use a form bean other than the one that is associated
+			with the Action. The form bean that you specify can be in any scope that is 
+			available to the JSP. If you use this attriubte, you must also use the "type"
+			attribute.]]>
+				 </description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[The package name and class name of the form bean that 
+			you have named in the "name" attribute. For example, com.mycompany.MyActionForm.
+			This attribute is valid only if you also use the "name" attribute.]]>
+				 </description>
+		</attribute>		<attribute>
+			<name>htmlname</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description> <![CDATA[Overrides the default HTML control name for this control. The 
+			default value is the name of the form bean that this tag is using. Use this attribute 
+			if both of the following are true: 1. Your JSP contains multiple tables and forms or 
+			a combination of both, 2. Your <wl-extension:table> tags specify 
+			"controlsEnabled=true" or "customize=true".]]> 
+				</description>
+		</attribute>
+		<attribute>
+			<name>readOnly</name>
+			<required>false</required>
+			<type>boolean</type>
+            <rtexprvalue>true</rtexprvalue>
+			<description> <![CDATA[A value of "true" makes this form permanently read-only, even if a user
+			starts an edit session and has permission to modify data in the form>. ]]>
+				 </description>
+		</attribute>
+		<attribute>
+			<name>dependentfields</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description> <![CDATA[Not supported for public use.]]> 
+				</description>
+			<!-- Specifies that this form has dependent fields. -->
+		</attribute>
+		<attribute>
+			<name>readOnlyFields</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description> <![CDATA[Not supported for public use.]]> <!-- Specifies that this form has read-only fields.  -->
+				 </description>
+		</attribute>
+		<attribute>
+			<name>object</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<description> <![CDATA[Not supported for public use.]]> <!-- The fully-qualified class name of the WebLogic Server MBean
+			that contains the operation that you specify in the "permission" attribute. If the
+			user has permission to invoke the operation, then the HTML controls for this table are enabled.-->
+				 </description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>advanced-form</name>
+		<tag-class>
+			com.bea.console.taglib.html.AdvancedFormTag</tag-class>
+			
+			
+			<tag>
+			<name> mytag</name>
+			<tag-class>p1.MyHandler</tag-class>
+			</tag>
+			

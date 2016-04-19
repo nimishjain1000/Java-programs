@@ -1,0 +1,3 @@
+void main is not allowed by the C++ standard (nor the C standard) and should not even compile.
+The int value that main returns is usually the value that will be passed back to the operating system. 0 traditionally indicates that the program was successful.
+You don't have to return 0 explicitly, because that'll happen automatically when main terminates. But it's important to keep in mind that main is the only function where omitting return is allowed

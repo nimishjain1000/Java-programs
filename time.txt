@@ -1,0 +1,59 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+class Time
+{ int hours,minutes,seconds;
+ public:
+ void gettime(int h,int m,int s)
+  {hours=h;
+    minutes=m;
+    seconds=s; }
+  Time()
+  {hours=minutes=seconds=0;}
+  void display()
+  { 
+cout<<"\nThe Time is : "<<(hours<10?"0":"")<<(hours>11?hours-12:hours)<<":"<<(minutes<10?"0":"")<<minutes<<":"<<(seconds<10?"0":"")<<seconds<<" "<<(hours<12?"AM":"PM");
+}
+  void addtime(Time *t1,Time *t2);
+  Time addtime(Time &t1,Time &t2);};
+void Time::addtime(Time *t1,Time *t2)
+{  hours=t1->hours+t2->hours;
+  minutes=t1->minutes+t2->minutes;
+ seconds=t1->seconds+t2->seconds;
+
+   if(seconds>=60)
+   {  minutes++;
+    seconds-=60;}
+   if(minutes>=60)
+   {hours++;
+    minutes-=60;}
+   if(hours>=24)
+   { hours-=24;}
+}
+Time Time::addtime(Time &t1,Time &t2)
+{ Time temp;
+ temp.hours=t1.hours+t2.hours;
+ temp.minutes=t1.minutes+t2.minutes;
+ temp.seconds=t1.seconds+t2.seconds;
+if(temp.seconds>=60)
+  { temp.minutes++;
+   temp.seconds-=60;}
+  if(temp.minutes>=60)
+  { temp.hours++;
+   temp.minutes-=60;}
+  if(temp.hours>=24)
+  {temp.hours-=24;}
+ return temp;}
+int main()
+{ Time t,p;
+ t.gettime(14,25,33);
+ p.gettime(16,43,23);
+ t.display();
+ p.display();
+ Time s,q;
+ s.addtime(&t,&p);
+ s.display();
+ q.addtime(&t,&p);
+ q.display();
+ getch();
+}
